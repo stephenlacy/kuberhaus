@@ -10,4 +10,23 @@
 </p>
 
 
+### Setup
+
+```
+go mod download
+
+go run main.go
+```
+
+Now start the dashboard:
+
+```
+cd dashboard
+
+yarn
+
+yarn start
+```
+
+
 MIT

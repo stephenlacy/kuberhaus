@@ -138,8 +138,6 @@ func nodes(clientset *kubernetes.Clientset) (api.NodeList, error) {
 
 func pods(clientset *kubernetes.Clientset) (ParsedPodMetric, error) {
 	items, err := clientset.CoreV1().Pods(metav1.NamespaceAll).List(metav1.ListOptions{})
-	// pod, err := clientset.CoreV1().Pods("").Get("product-web-32939e4e2810014c4d23af34e448a78cfa298852-99487jgnpt", metav1.GetOptions{})
-	// fmt.Printf("%s", pod.Spec.Containers[0].Resources.Limits.Cpu())
 	var parsed []PodMetric
 	for _, pod := range items.Items {
 		p := PodMetric{
