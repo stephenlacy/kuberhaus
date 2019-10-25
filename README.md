@@ -12,9 +12,13 @@
 
 ### Setup
 
-```
-go mod download
+Connect to your desired kubernetes cluster:
 
+```
+kubectl config use-context <cluster-name>
+```
+
+```
 go run main.go
 ```
 
