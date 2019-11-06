@@ -1,7 +1,7 @@
 VERSION=$(shell git describe --always --long --tags)
 GOBUILD=go build .
 DOCKER_USER=stevelacy
-NAME=kubehaus
+NAME=kuberhaus
 IMAGE=$(DOCKER_USER)/$(NAME):$(VERSION)
 LATEST=$(DOCKER_USER)/$(NAME):latest
 
