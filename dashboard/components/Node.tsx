@@ -133,7 +133,6 @@ const PodComponent = ({ entity, opts }: NodeProps) => {
   console.log(entity)
   const hideSystemPod = opts.hideSystemPod;
   const bg = getColor(entity)
-  debugger
   if (entity.metadata.namespace.includes('system') && hideSystemPod){
     return null;
   }
