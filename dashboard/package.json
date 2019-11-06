@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "parcel index.html"
+    "start": "parcel index.html",
+    "build": "rm -rf dist/ && parcel build --no-source-maps index.html"
   },
   "dependencies": {
     "@types/react": "^16.9.2",

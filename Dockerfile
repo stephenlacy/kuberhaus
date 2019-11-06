@@ -8,5 +8,6 @@ RUN apk --no-cache add ca-certificates
 RUN mkdir /app
 WORKDIR /app
 COPY --from=build_image /app/main .
+ADD ./dashboard/dist/* /app/static/
 EXPOSE 8282
 CMD ["./main"]

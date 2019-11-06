@@ -127,6 +127,9 @@ func main() {
 		w.Write(str)
 	})
 
+	fs := http.FileServer(http.Dir("./static"))
+	http.Handle("/", fs)
+
 	fmt.Printf("starting on: %s", port)
 	http.ListenAndServe(port, nil)
 }

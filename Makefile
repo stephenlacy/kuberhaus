@@ -5,13 +5,16 @@ NAME=kuberhaus
 IMAGE=$(DOCKER_USER)/$(NAME):$(VERSION)
 LATEST=$(DOCKER_USER)/$(NAME):latest
 
-all: docker
+all: client docker
 
 build:
 	$(GOBUILD)
 
 build_linux:
 	GOOS=linux GOARCH=386 CGO_ENABLED=0 $(GOBUILD)
+
+client:
+	cd ./dashboard && yarn build
 
 docker:
 	docker build -t $(IMAGE) .
