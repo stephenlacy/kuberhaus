@@ -23,8 +23,8 @@ var port = ":8282"
 // Metric ...
 type Metric struct {
 	Name        string `json:"name"`
-	Cpu         string `json:"cpu"`
-	CpuTotal    string `json:"cpu_total"`
+	CPU         string `json:"cpu"`
+	CPUTotal    string `json:"cpu_total"`
 	Memory      string `json:"memory"`
 	MemoryTotal string `json:"memory_total"`
 }
@@ -150,7 +150,7 @@ func pods(clientset *kubernetes.Clientset) (ParsedPodMetric, error) {
 			m, _ := c.Resources.Limits.Memory().CanonicalizeBytes(make([]byte, 0, 18))
 			memory := string(m)
 			metric := Metric{
-				CpuTotal:    fmt.Sprintf("%d", c.Resources.Limits.Cpu().MilliValue()),
+				CPUTotal:    fmt.Sprintf("%d", c.Resources.Limits.Cpu().MilliValue()),
 				MemoryTotal: memory,
 			}
 			p.Metrics = metric
@@ -186,8 +186,8 @@ func nodeMetrics(metricset *metrics.Clientset, clientset *kubernetes.Clientset) 
 
 		parsed = append(parsed, Metric{
 			Name:        node.ObjectMeta.Name,
-			CpuTotal:    cpuTotal,
-			Cpu:         cpu,
+			CPUTotal:    cpuTotal,
+			CPU:         cpu,
 			Memory:      memory,
 			MemoryTotal: memoryTotal,
 		})
