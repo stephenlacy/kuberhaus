@@ -33,7 +33,13 @@ yarn start
 ```
 
 # Using Docker
+
 Use existing image `stevelacy/kuberhaus`
+
+`docker run -v ~/.kube/:/root/.kube -p 8282:8282 --name stevelacy/kuberhaus:latest`
+
+Open `http://localhost:8282`
+
 Build image
 
 ```sh
@@ -42,7 +48,7 @@ docker build -t kuberhaus:latest .
 
 Run container and mount config to container
 ```sh
-docker run -v ~/.kube/:/root/.kube -p 8282:8282 --name kuberhaus kuberhaus
+docker run -v ~/.kube/:/root/.kube -p 8282:8282 --name kuberhaus
 ```
 
 MIT
