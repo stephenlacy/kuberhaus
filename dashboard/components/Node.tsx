@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, useCallback } from 'react'
 import { IoIosRemoveCircle, IoIosPlay } from 'react-icons/io'
 import randomColor from 'randomcolor'
 import './node.sass'
@@ -56,7 +56,8 @@ type NodeProps = {
   entity: Node
   opts?: {
     showName: boolean
-    showMetrics: boolean
+    showMetrics: boolean,
+    hideSystemPod: boolean
   }
 }
 
@@ -130,7 +131,11 @@ const renderResources = (container: Container) => {
 
 const PodComponent = ({ entity, opts }: NodeProps) => {
   console.log(entity)
+  const hideSystemPod = opts.hideSystemPod;
   const bg = getColor(entity)
+  if (entity.metadata.namespace.includes('system') && hideSystemPod){
+    return null;
+  }
   return <EntityComponent
     title={entity.metadata.name}
     bg={bg}>

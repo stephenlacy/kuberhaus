@@ -15,7 +15,8 @@ interface State {
   loading: boolean
   opts?: {
     showName: boolean
-    showMetrics: boolean
+    showMetrics: boolean,
+    hideSystemPod: boolean
   }
 }
 interface EntityRequest {
@@ -38,6 +39,7 @@ export default class App extends PureComponent {
     opts: {
       showName: false,
       showMetrics: false,
+      hideSystemPod: true
     }
   }
   request = (param: string) =>
@@ -84,6 +86,7 @@ export default class App extends PureComponent {
   renderHeader = () => {
     const toggleName = () => this.toggleNames('showName')
     const toggleMetrics = () => this.toggleNames('showMetrics')
+    const toggleSystemPod = () => this.toggleNames('hideSystemPod')
     return <div className="header">
       <label>
         <Toggle
@@ -96,6 +99,12 @@ export default class App extends PureComponent {
           onChange={toggleMetrics}
           defaultChecked={this.state.opts.showMetrics} />
         <span>Show/Hide Pod metrics</span>
+      </label>
+      <label>
+        <Toggle
+          onChange={toggleSystemPod}
+          defaultChecked={this.state.opts.hideSystemPod} />
+        <span>Hide Systems Pod</span>
       </label>
     </div>
   }
