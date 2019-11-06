@@ -32,5 +32,13 @@ yarn
 yarn start
 ```
 
-
+# Using Docker
+Build image
+```sh
+docker build .  --tag kubehus:latest
+```
+Run container and mount config to container
+```sh
+docker run -v /home/.kube/:/root/.kube -p 8282:8282 --name kubehus kubehus
+```
 MIT
