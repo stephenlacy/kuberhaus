@@ -43,7 +43,7 @@ export default class App extends PureComponent {
     }
   }
   request = (param: string) =>
-    axios.get(config.url + '/' + param).then(({ data }) => data.items)
+    axios.get(config.url + '/' + param).then(({ data }) => data.items || [])
 
   componentDidMount = () => {
     this.request('nodes').then((nodes: Node[]) => {

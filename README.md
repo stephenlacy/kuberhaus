@@ -51,4 +51,46 @@ Run container and mount config to container
 docker run -v ~/.kube/:/root/.kube -p 8282:8282 --name kuberhaus
 ```
 
+
+# Running on kubernetes
+
+Kuberhaus will automatically retrieve the `KUBERNETES_SERVICE_HOST` variable and connect to the parent cluster
+
+
+`deployment.yaml`
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kuberhaus-deployment
+  namespace: kube-system
+  labels:
+    app: kuberhaus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kuberhaus
+  template:
+    metadata:
+      labels:
+        app: kuberhaus
+    spec:
+      serviceAccountName: cluster-admin
+      containers:
+      - name: kuberhaus
+        image: stevelacy/kuberhaus:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8282
+---
+```
+
+`kubectl apply -f deployment.yaml`
+
+Access it with `kubectly port-forward`
+
+`kubectl port-forward -n kube-system kuberhaus-deployment-<id> 8282:8282`
+
 MIT

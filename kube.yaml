@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kuberhaus-deployment
+  namespace: kube-system
+  labels:
+    app: kuberhaus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kuberhaus
+  template:
+    metadata:
+      labels:
+        app: kuberhaus
+    spec:
+      serviceAccountName: cluster-admin
+      containers:
+      - name: kuberhaus
+        image: stevelacy/kuberhaus:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8282
+
