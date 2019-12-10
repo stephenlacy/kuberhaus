@@ -89,7 +89,7 @@ spec:
 
 `kubectl apply -f deployment.yaml`
 
-Access it with `kubectly port-forward`
+Access it with `kubectl port-forward`
 
 `kubectl port-forward -n kube-system kuberhaus-deployment-<id> 8282:8282`
 
