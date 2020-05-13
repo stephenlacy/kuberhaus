@@ -88,6 +88,9 @@ func main() {
 	http.HandleFunc("/nodes", func(w http.ResponseWriter, r *http.Request) {
 		cors(&w)
 		items, err := nodes(clientset)
+		if err != nil {
+			fmt.Printf("%e", err)
+		}
 		str, err := json.MarshalIndent(items, "", "    ")
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -100,6 +103,9 @@ func main() {
 	http.HandleFunc("/pods", func(w http.ResponseWriter, r *http.Request) {
 		cors(&w)
 		items, err := pods(clientset)
+		if err != nil {
+			fmt.Printf("%e", err)
+		}
 		str, err := json.MarshalIndent(items, "", "    ")
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -110,6 +116,9 @@ func main() {
 	})
 	http.HandleFunc("/services", func(w http.ResponseWriter, r *http.Request) {
 		items, err := services(clientset)
+		if err != nil {
+			fmt.Printf("%e", err)
+		}
 		str, err := json.MarshalIndent(items, "", "    ")
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -122,6 +131,9 @@ func main() {
 	http.HandleFunc("/metrics/nodes", func(w http.ResponseWriter, r *http.Request) {
 		cors(&w)
 		items, err := nodeMetrics(metricset, clientset)
+		if err != nil {
+			fmt.Printf("%e", err)
+		}
 		str, err := json.MarshalIndent(items, "", "    ")
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -133,6 +145,9 @@ func main() {
 	http.HandleFunc("/metrics/pods", func(w http.ResponseWriter, r *http.Request) {
 		cors(&w)
 		items, err := podMetrics(metricset)
+		if err != nil {
+			fmt.Printf("%e", err)
+		}
 		str, err := json.MarshalIndent(items, "", "    ")
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
