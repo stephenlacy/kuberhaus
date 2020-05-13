@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kuberhaus-deployment
-  namespace: kube-system
+  namespace: default
   labels:
     app: kuberhaus
 spec:
@@ -15,7 +15,7 @@ spec:
       labels:
         app: kuberhaus
     spec:
-      serviceAccountName: cluster-admin
+      serviceAccountName: kuberhaus-sa
       containers:
       - name: kuberhaus
         image: stevelacy/kuberhaus:latest
@@ -23,3 +23,37 @@ spec:
         ports:
         - containerPort: 8282
 
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  namespace: default
+  name: kuberhaus-role
+rules:
+- apiGroups: ["*"] # "" indicates the core API group
+  resources: ["*"]
+  verbs: ["*"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kuberhaus-role-binding
+subjects:
+- kind: ServiceAccount
+  name: kuberhaus-sa
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: kuberhaus-role
+  apiGroup: rbac.authorization.k8s.io
+
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kuberhaus-sa
+  namespace: default
