@@ -32,8 +32,8 @@ metadata:
   name: kuberhaus-role
 rules:
 - apiGroups: ["*"] # "" indicates the core API group
-  resources: ["*"]
-  verbs: ["*"]
+  resources: ["pods", "nodes", "deployments", "services"]
+  verbs: ["get", "watch", "list"]
 
 ---
 
