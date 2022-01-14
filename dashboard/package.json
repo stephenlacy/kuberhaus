@@ -6,7 +6,7 @@
   "dependencies": {
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "prop-types": "^15.7.2",
     "randomcolor": "^0.5.4",
     "react": "^16.9.0",
