@@ -130,7 +130,6 @@ const renderResources = (container: Container) => {
 }
 
 const PodComponent = ({ entity, opts }: NodeProps) => {
-  console.log(entity)
   const hideSystemPod = opts.hideSystemPod;
   const bg = getColor(entity)
   if (entity.metadata.namespace.includes('system') && hideSystemPod){
@@ -147,7 +146,7 @@ const PodComponent = ({ entity, opts }: NodeProps) => {
 }
 
 const NodeComponent = ({ entity, opts }: NodeProps) => {
-  return <EntityComponent>
+  return <EntityComponent bg="">
     <div className="row">
       {entity.metadata.name}
     </div>
