@@ -4,7 +4,7 @@ go 1.12
 
 require (
 	cloud.google.com/go v0.46.3 // indirect
-	golang.org/x/sys v0.0.0-20191010194322-b09406accb47 // indirect
+	golang.org/x/sys v0.4.0 // indirect
 	google.golang.org/appengine v1.6.5 // indirect
 	gopkg.in/yaml.v2 v2.2.8 // indirect
 	k8s.io/api v0.0.0-20191010143144-fbf594f18f80

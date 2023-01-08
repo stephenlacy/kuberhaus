@@ -1,4 +1,4 @@
-FROM golang:1.13 as build_image
+FROM golang:1.19 as build_image
 ADD ./main.go ./go.mod ./go.sum /app/
 WORKDIR /app
 RUN GOOS=linux GOARCH=386 CGO_ENABLED=0 go build -o main .
